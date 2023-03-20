@@ -25,11 +25,18 @@ function liftWeights() {
   });
 }
 
-function workout() {
-  // refactor this code to use Promise.all
-  Promise.all([stretch(), runOnTreadmill(), liftWeights()])
-    .then(() => console.log("done working out"))
-    .catch((err) => console.log(err));
+// refactor this code to use async / await
+async function workout() {
+  try {
+    // await Promise.all([stretch(), runOnTreadmill(), liftWeights()]).then(() =>
+    //   console.log("done working out")
+    // );
+    await stretch();
+    await runOnTreadmill();
+    await liftWeights().then(() => console.log("done working out"));
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 /* ============================ TEST YOUR CODE ============================
